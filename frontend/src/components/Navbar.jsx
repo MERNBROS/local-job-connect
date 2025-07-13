@@ -19,19 +19,17 @@ const Navbar = () => {
           edge="start"
           color="inherit"
           aria-label="logo"
-          sx={{ display: { xs: "none", md: "flex" } }}
+          sx={{ display: "flex", alignItems: "center" }}
           // onClick={() => navigate("/")} // Navigate to home when clicked
           style={{ cursor: "pointer" }} // Change cursor to pointer for better UX
         >
-          <WorkRoundedIcon sx={{ mr: 1 }} />
+          <WorkRoundedIcon sx={{ mr: 1, fontSize: { xs: 24, md: 30 } }} />
 
           <Typography
             variant="h6"
             component="div"
             sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              cursor: "pointer",
+              fontSize: { xs: "1rem", md: "1.25rem" },
               fontWeight: 600,
               color: "#fff",
               letterSpacing: 1,
@@ -40,33 +38,50 @@ const Navbar = () => {
             style={{ cursor: "pointer" }} // Change cursor to pointer for better UX
           >
             Local Job Connect
-            
           </Typography>
         </Box>
 
         {/* TIME 25.30 CLERK STARTS */}
         {user ? (
-              <div className="flex items-center gap-3">
-                <Link to="/applications">Applied Jobs</Link>
-                <p>|</p>
-                <p>Hi , {user.firstName + " " + user.lastName}</p>
-                <UserButton />
-              </div>
-            ) : (
-              <div className="flex items-center gap-4 max-sm:text-xs">
-                <Button variant="outlined" color="white" size="small">
-                  Recruiter Login
-                </Button>
-                <Button
-                  onClick={() => openSignIn()}
-                  variant="outlined"
-                  color="white"
-                  size="small"
-                >
-                  Login
-                </Button>
-              </div>
-            )}
+          <div className="flex items-center gap-3">
+            <Link to="/applications">Applied Jobs</Link>
+            <p>|</p>
+            <p className="max-sm:hidden">
+              Hi , {user.firstName + " " + user.lastName}
+            </p>
+            <UserButton />
+          </div>
+        ) : (
+          <div className="flex gap-2">
+            <Button
+              variant="outlined"
+              size="small"
+              sx={{
+                padding: { xs: "4px 10px", sm: "6px 14px" },
+                fontSize: { xs: "0.65rem", sm: "0.875rem" },
+                borderColor: "#fff",
+                color: "#fff",
+                textTransform: "none",
+              }}
+            >
+              Recruiter Login
+            </Button>
+            <Button
+              onClick={() => openSignIn()}
+              variant="outlined"
+              size="small"
+              sx={{
+                padding: { xs: "4px 10px", sm: "6px 14px" },
+                fontSize: { xs: "0.65rem", sm: "0.875rem" },
+                borderColor: "#fff",
+                color: "#fff",
+                textTransform: "none",
+              }}
+            >
+              Login
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
